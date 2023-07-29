@@ -1,0 +1,43 @@
+_BASE_: maskformer2_R50_bs16_160k.yaml
+MODEL:
+  BACKBONE:
+    NAME: "D2DiNAT"
+  DINAT:
+    EMBED_DIM: 192
+    DEPTHS: [3, 4, 18, 5]
+    NUM_HEADS: [6, 12, 24, 48]
+    KERNEL_SIZE: 11
+    DILATIONS: [[1, 14, 1], [1, 4, 1, 7], [1, 2, 1, 3, 1, 2, 1, 3, 1, 2, 1, 3, 1, 2, 1, 3, 1, 3], [1, 1, 1, 1, 1]]
+    DROP_PATH_RATE: 0.3
+  WEIGHTS: "checkpoints/mask2former_dinat_large_coco_instance.pth"
+  PIXEL_MEAN: [87.3359904, 91.29594915, 83.01340125]
+  PIXEL_STD: [43.7584692, 38.600545950000004, 35.4384822]
+  MASK_FORMER:
+    NUM_OBJECT_QUERIES: 100
+    FREEZE_BACKBONE: False
+DATASETS:
+  TRAIN: ("dacon_sem_seg_train_fold0",)
+  TEST: ("dacon_sem_seg_val_slice_fold0",)
+SOLVER:
+  IMS_PER_BATCH: 16
+  BASE_LR: 0.0005
+  STEPS: (110000, 120000)
+  MAX_ITER: 130000
+  LR_SCHEDULER_NAME: WarmupPolyLR
+  POLY_LR_CONSTANT_ENDING: 0.00005
+  CHECKPOINT_PERIOD: 10000
+  AMP:
+    ENABLED: True
+TEST:
+  EVAL_PERIOD: 10000
+INPUT:
+  MIN_SIZE_TRAIN: (448,)
+  MAX_SIZE_TRAIN: 448
+  MAX_SIZE_TEST: 448
+  MIN_SIZE_TEST: 448
+  FINAL_SIZE: 448
+  COLOR_AUG_SSD: false
+  AUG_VER: 7
+  DATASET_MAPPER_NAME: "mask_former_semantic"
+SEED: 777
+OUTPUT_DIR: "output/dacon/mfs_f0_base448_dinatl_augver7_5e4"

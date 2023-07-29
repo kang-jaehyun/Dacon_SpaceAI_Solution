@@ -1,0 +1,37 @@
+_BASE_: ../maskformer2_R50_bs16_50ep.yaml
+MODEL:
+  BACKBONE:
+    NAME: "D2SwinTransformer"
+  SWIN:
+    EMBED_DIM: 128
+    DEPTHS: [2, 2, 18, 2]
+    NUM_HEADS: [4, 8, 16, 32]
+    WINDOW_SIZE: 12
+    APE: False
+    DROP_PATH_RATE: 0.3
+    PATCH_NORM: True
+    PRETRAIN_IMG_SIZE: 384
+    USE_CHECKPOINT: True
+  WEIGHTS: "checkpoints/swin_base_patch4_window12_384_22k.pkl"
+  PIXEL_MEAN: [87.3359904, 91.29594915, 83.01340125]
+  PIXEL_STD: [43.7584692, 38.600545950000004, 35.4384822]
+DATASETS:
+  TRAIN: ("dacon_instance_slice_train",)
+  TEST: ("dacon_instance_slice_val",)
+SOLVER:
+  IMS_PER_BATCH: 96
+  BASE_LR: 0.0001
+  STEPS: (33000, 36000)
+  MAX_ITER: 39000
+  LR_SCHEDULER_NAME: WarmupPolyLR
+  CHECKPOINT_PERIOD: 3000
+TEST:
+  EVAL_PERIOD: 3000
+INPUT:
+  MIN_SIZE_TRAIN: (256,)
+  MAX_SIZE_TRAIN: 256
+  MAX_SIZE_TEST: 256
+  MIN_SIZE_TEST: 256
+  COLOR_AUG_SSD: false
+  DATASET_MAPPER_NAME: "mask_former_instance"
+OUTPUT_DIR: "output/dacon/mf_slice_base224_baseline2"

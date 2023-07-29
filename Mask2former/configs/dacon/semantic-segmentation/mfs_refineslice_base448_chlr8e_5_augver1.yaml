@@ -1,0 +1,40 @@
+_BASE_: maskformer2_R50_bs16_160k.yaml
+MODEL:
+  BACKBONE:
+    NAME: "D2CONVNEXTV2"
+  CONVNEXTV2:
+    DIMS: [352, 704, 1408, 2816] # huge
+    DEPTHS: [3, 3, 27, 3]
+  # WEIGHTS: "checkpoints/swin_tiny_patch4_window7_224.pkl"
+  PIXEL_MEAN: [87.3359904, 91.29594915, 83.01340125]
+  PIXEL_STD: [43.7584692, 38.600545950000004, 35.4384822]
+  MASK_FORMER:
+    NUM_OBJECT_QUERIES: 200
+    FREEZE_BACKBONE: False
+  WEIGHTS: "checkpoints/convnextv2_huge_22k_512_ema_backbone.pt"
+DATASETS:
+  TRAIN: ("dacon_sem_seg_train_fold_slice",)
+  TEST: ("dacon_sem_seg_val_fold_slice",)
+SOLVER:
+  IMS_PER_BATCH: 32
+  BASE_LR: 0.00008
+  STEPS: (65000, 75000)
+  MAX_ITER: 80000
+  LR_SCHEDULER_NAME: WarmupPolyLR
+  POLY_LR_CONSTANT_ENDING: 0.000008
+  CHECKPOINT_PERIOD: 5000
+  AMP:
+    ENABLED: True
+TEST:
+  EVAL_PERIOD: 5000
+INPUT:
+  MIN_SIZE_TRAIN: (448,)
+  MAX_SIZE_TRAIN: 448
+  MAX_SIZE_TEST: 448
+  MIN_SIZE_TEST: 448
+  FINAL_SIZE: 448
+  COLOR_AUG_SSD: false
+  AUG_VER: 1
+  DATASET_MAPPER_NAME: "mask_former_semantic"
+OUTPUT_DIR: "output/dacon/mfs_refineslice_base448_cblr8e-5_augver1"
+SEED: 777
