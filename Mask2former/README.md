@@ -3,7 +3,14 @@ Mask2Former: Masked-attention Mask Transformer for Universal Image Segmentation 
 
 ## 설치
 
-설치 방법
+- Docker 이용하는 방법 (권장)
+  모든 환경이 설치된 docker 이미지를 docker hub에 올려놨습니다.
+  - 이미지 : `youkind/d2:latest`
+  - 이미지 pull : `docker pull youkind/d2:latest`
+
+- 직접 환경 설치하는 방법 (권장하지 않음)
+  - mask2former는 detectron2 위에서 동작하기 때문에 detectron2를 설치하셔야 합니다.
+  - 
 
 ## Pretrained Weight
 coco instance segmentation pretrained model에서부터 학습을 시작합니다.
@@ -54,15 +61,10 @@ OUTPUT_DIR output/fold4
 
 
 ## Model ZOO
-
-| 폴드   | 가중치 및 링크                               |
-|-------|-------------------------------------------|
-| fold0 | [weight(link)](https://example.com/fold0) |
-| fold1 | [weight(link)](https://example.com/fold1) |
-| fold2 | [weight(link)](https://example.com/fold2) |
-| fold3 | [weight(link)](https://example.com/fold3) |
-| fold4 | [weight(link)](https://example.com/fold4) |
-
+- 직접 트레이닝을 하지 않고 결과를 확인하기 위해서는 학습된 weight를 받아야 합니다.
+- [weight 다운로드는 여기에서 받으실 수 있습니다.](https://yonsei-my.sharepoint.com/personal/youkind_o365_yonsei_ac_kr/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fyoukind%5Fo365%5Fyonsei%5Fac%5Fkr%2FDocuments%2Fspaceai%2Fmodel%5Fweights&view=0)
+- 다운로드가 완료된 `.pth` 파일들은 `Dacon_SpaceAI_Solution/model_weights`안에 넣어주세요.
+  
 ## 추론
 
 ```

@@ -28,9 +28,9 @@ TBW
 | Model                 | Framework   | weights (fold0)                         | weights (fold1)                         | weights (fold2)                         | weights (fold3)                         | weights (fold4)                         |
 |-----------------------|-------------|-----------------------------------------|-----------------------------------------|-----------------------------------------|-----------------------------------------|-----------------------------------------|
 | DiNAT-L + Mask2former | detectron2  | [download](https://example.com/f0_model) | [download](https://example.com/f1_model) | [download](https://example.com/f2_model) | [download](https://example.com/f3_model) | [download](https://example.com/f4_model) |
-| ConvNext + Upernet    | mmseg       | [download](https://example.com/f0_model) | [download](https://example.com/f1_model) | [download](https://example.com/f2_model) | [download](https://example.com/f3_model) | [download](https://example.com/f4_model) |
-| ResNest + DeeplabV3+  | mmseg       | [download](https://example.com/f0_model) | [download](https://example.com/f1_model) | [download](https://example.com/f2_model) | [download](https://example.com/f3_model) | [download](https://example.com/f4_model) |
-| Segformer             | mmseg       | [download](https://example.com/f0_model) | [download](https://example.com/f1_model) | [download](https://example.com/f2_model) | [download](https://example.com/f3_model) | [download](https://example.com/f4_model) |
+| ConvNext + Upernet    | mmsegmentation       | [download](https://example.com/f0_model) | [download](https://example.com/f1_model) | [download](https://example.com/f2_model) | [download](https://example.com/f3_model) | [download](https://example.com/f4_model) |
+| ResNest + DeeplabV3+  | mmsegmentation       | [download](https://example.com/f0_model) | [download](https://example.com/f1_model) | [download](https://example.com/f2_model) | [download](https://example.com/f3_model) | [download](https://example.com/f4_model) |
+| Segformer             | mmsegentation       | [download](https://example.com/f0_model) | [download](https://example.com/f1_model) | [download](https://example.com/f2_model) | [download](https://example.com/f3_model) | [download](https://example.com/f4_model) |
 
 ## 모델 학습 및 추론
 
