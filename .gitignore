@@ -1,4 +1,5 @@
-original_data
+original_data/test_img
+original_data/train_img
 datasets/Satellite
 *.pth
 *.tar
