@@ -1,44 +1,76 @@
-# Mask2Former: Masked-attention Mask Transformer for Universal Image Segmentation (CVPR 2022)
+# Mask2Former
+Mask2Former: Masked-attention Mask Transformer for Universal Image Segmentation (CVPR 2022) 기반으로 작성되었습니다.
 
-[Bowen Cheng](https://bowenc0221.github.io/), [Ishan Misra](https://imisra.github.io/), [Alexander G. Schwing](https://alexander-schwing.de/), [Alexander Kirillov](https://alexander-kirillov.github.io/), [Rohit Girdhar](https://rohitgirdhar.github.io/)
+## 설치
 
-[[`arXiv`](https://arxiv.org/abs/2112.01527)] [[`Project`](https://bowenc0221.github.io/mask2former)] [[`BibTeX`](#CitingMask2Former)]
+설치 방법
 
-<div align="center">
-  <img src="https://bowenc0221.github.io/images/maskformerv2_teaser.png" width="100%" height="100%"/>
-</div><br/>
+## Pretrained Weight
+coco instance segmentation pretrained model에서부터 학습을 시작합니다.
+```
+mkdir checkpoints
+cd checkpoints
+wget https://shi-labs.com/projects/dinat/checkpoints/m2f/mask2former_dinat_large_coco_instance.pth
+cd ..
+```
 
-### Features
-* A single architecture for panoptic, instance and semantic segmentation.
-* Support major segmentation datasets: ADE20K, Cityscapes, COCO, Mapillary Vistas.
+## 학습
 
-## Updates
-* Add Google Colab demo.
-* Video instance segmentation is now supported! Please check our [tech report](https://arxiv.org/abs/2112.10764) for more details.
+- fold0 Training
+```
+python train_net.py \
+--config-file configs/dacon/semantic-segmentation/mfs_f0_base448_dinatl_augver7.yaml \
+--num-gpus {num_gpus} \
+OUTPUT_DIR output/fold0
+```
+- fold1 Training
+```
+python train_net.py \
+--config-file configs/dacon/semantic-segmentation/mfs_f1_base448_dinatl_augver7.yaml \
+--num-gpus {num_gpus} \
+OUTPUT_DIR output/fold1
+```
+- fold2 Training
+```
+python train_net.py \
+--config-file configs/dacon/semantic-segmentation/mfs_f2_base448_dinatl_augver7.yaml \
+--num-gpus {num_gpus} \
+OUTPUT_DIR output/fold2
+```
+- fold3 Training
+```
+python train_net.py \
+--config-file configs/dacon/semantic-segmentation/mfs_f3_base448_dinatl_augver7.yaml \
+--num-gpus {num_gpus} \
+OUTPUT_DIR output/fold3
+```
+- fold4 Training
+```
+python train_net.py \
+--config-file configs/dacon/semantic-segmentation/mfs_f4_base448_dinatl_augver7.yaml \
+--num-gpus {num_gpus} \
+OUTPUT_DIR output/fold4
+```
 
-## Installation
 
-See [installation instructions](INSTALL.md).
+## Model ZOO
 
-## Getting Started
+| 폴드   | 가중치 및 링크                               |
+|-------|-------------------------------------------|
+| fold0 | [weight(link)](https://example.com/fold0) |
+| fold1 | [weight(link)](https://example.com/fold1) |
+| fold2 | [weight(link)](https://example.com/fold2) |
+| fold3 | [weight(link)](https://example.com/fold3) |
+| fold4 | [weight(link)](https://example.com/fold4) |
 
-See [Preparing Datasets for Mask2Former](datasets/README.md).
+## 추론
 
-See [Getting Started with Mask2Former](GETTING_STARTED.md).
+```
 
-Run our demo using Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1uIWE5KbGFSjrxey2aRd5pWkKNY1_SaNq)
+```
 
-Integrated into [Huggingface Spaces 🤗](https://huggingface.co/spaces) using [Gradio](https://github.com/gradio-app/gradio). Try out the Web Demo: [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/akhaliq/Mask2Former)
 
-Replicate web demo and docker image is available here: [![Replicate](https://replicate.com/facebookresearch/mask2former/badge)](https://replicate.com/facebookresearch/mask2former)
 
-## Advanced usage
-
-See [Advanced Usage of Mask2Former](ADVANCED_USAGE.md).
-
-## Model Zoo and Baselines
-
-We provide a large set of baseline results and trained models available for download in the [Mask2Former Model Zoo](MODEL_ZOO.md).
 
 ## License
 
