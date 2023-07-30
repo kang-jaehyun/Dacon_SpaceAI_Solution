@@ -44,3 +44,12 @@ if __name__ == "__main__":
                 cv2.imwrite(f"./Satellite/img_dir/val_{fold_index}/{train_id}.png", img)
                 cv2.imwrite(f"./Satellite/ann_dir/val_{fold_index}/{train_id}.png", gt_mask)
     
+    
+    # copy test images from original_data/test_img to Satellite/img_dir/test
+    os.makedirs(f"./Satellite/img_dir/test", exist_ok=True)
+
+    for file_name in tqdm(os.listdir("../original_data/test_img")):
+        img = cv2.imread(f"../original_data/test_img/{file_name}")
+        cv2.imwrite(f"./Satellite/img_dir/test/{file_name}", img)
+
+    

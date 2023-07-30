@@ -122,7 +122,7 @@ model = dict(
     train_cfg=dict(),
     test_cfg=dict(mode='whole'))
 dataset_type = 'SatelliteDataset'
-data_root = 'data/Satellite'
+data_root = '../datasets/Satellite'  # Root path of data.
 crop_size = (
     256,
     256,
@@ -189,10 +189,10 @@ train_dataloader = dict(
     sampler=dict(type='InfiniteSampler', shuffle=True),
     dataset=dict(
         type='SatelliteDataset',
-        data_root='data/Satellite',
+        data_root = '../datasets/Satellite',
         data_prefix=dict(
-            img_path='img_dir/real_train_img',
-            seg_map_path='ann_dir/train_gt'),
+            img_path='img_dir/train_4',
+            seg_map_path='ann_dir/train_4'),
         pipeline=[
             dict(type='LoadImageFromFile'),
             dict(type='LoadAnnotations', reduce_zero_label=False),
@@ -214,10 +214,10 @@ val_dataloader = dict(
     sampler=dict(type='DefaultSampler', shuffle=False),
     dataset=dict(
         type='SatelliteDataset',
-        data_root='data/Satellite',
+        data_root = '../datasets/Satellite',
         data_prefix=dict(
-            img_path='img_dir/fold4_val_slice_img',
-            seg_map_path='ann_dir/fold4_val_slice_gt'),
+            img_path='img_dir/val_slice_4',
+            seg_map_path='ann_dir/val_slice_4'),
         pipeline=[
             dict(type='LoadImageFromFile'),
             dict(type='Resize', scale=(
@@ -234,10 +234,9 @@ test_dataloader = dict(
     sampler=dict(type='DefaultSampler', shuffle=False),
     dataset=dict(
         type='SatelliteDataset',
-        data_root='data/Satellite',
+        data_root = '../datasets/Satellite',
         data_prefix=dict(
-            img_path='img_dir/test_img',
-            seg_map_path='annotations/validation'),
+            img_path='img_dir/test'),
         pipeline=[
             dict(type='LoadImageFromFile'),
             dict(type='Resize', scale=(
@@ -257,7 +256,7 @@ test_evaluator = dict(
         'mIoU',
     ],
     format_only=True,
-    output_dir='_result_img/segformer_class2')
+    output_dir='mask_inference_result/segformer_fold4/format_results')
 default_scope = 'mmseg'
 env_cfg = dict(
     cudnn_benchmark=True,
@@ -265,13 +264,13 @@ env_cfg = dict(
     dist_cfg=dict(backend='nccl'))
 vis_backends = [
     dict(type='LocalVisBackend'),
-    dict(type='TensorboardVisBackend'),
+    # dict(type='TensorboardVisBackend'),
 ]
 visualizer = dict(
     type='SegLocalVisualizer',
     vis_backends=[
         dict(type='LocalVisBackend'),
-        dict(type='TensorboardVisBackend'),
+        # dict(type='TensorboardVisBackend'),
     ],
     name='visualizer')
 log_processor = dict(by_epoch=False)

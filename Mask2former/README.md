@@ -4,7 +4,7 @@ Mask2Former: Masked-attention Mask Transformer for Universal Image Segmentation 
 ## 설치
 
 - Docker 이용하는 방법 (권장)
-  모든 환경이 설치된 docker 이미지를 docker hub에 올려놨습니다.
+  - 모든 환경이 설치된 docker 이미지를 docker hub에 올려놨습니다.
   - 이미지 : `youkind/d2:latest`
   - 이미지 pull : `docker pull youkind/d2:latest`
 
@@ -65,12 +65,13 @@ OUTPUT_DIR output/fold4
 - [weight 다운로드는 여기에서 받으실 수 있습니다.](https://yonsei-my.sharepoint.com/personal/youkind_o365_yonsei_ac_kr/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fyoukind%5Fo365%5Fyonsei%5Fac%5Fkr%2FDocuments%2Fspaceai%2Fmodel%5Fweights&view=0)
 - 다운로드가 완료된 `.pth` 파일들은 `Dacon_SpaceAI_Solution/model_weights`안에 넣어주세요.
   
-## 추론
+## 추론 (Inference)
+
+- 모델 `.pth` 파일을 `dinat_mask2former_fold{0~4}.pth`로 저장하셨을 경우, 아래 코드를 통해 5개 fold의 인퍼런스를 진행하실 수 있습니다.
 
 ```
-
-```
-
+sh inference.sh
+``` 
 
 
 

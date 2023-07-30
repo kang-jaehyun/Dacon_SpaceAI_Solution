@@ -112,7 +112,7 @@ model = dict(
 
 # dataset settings
 dataset_type = 'SatelliteDataset'  # Dataset type, this will be used to define the dataset.
-data_root = 'data/Satellite'  # Root path of data.
+data_root = '../datasets/Satellite'  # Root path of data.
 train_pipeline = [  # Training pipeline.
     dict(type='LoadImageFromFile'),  # First pipeline to load images from file path.
     dict(type='LoadAnnotations', reduce_zero_label=False),  # Second pipeline to load annotations for current image.
@@ -120,16 +120,6 @@ train_pipeline = [  # Training pipeline.
     # Augmentation pipeline that resize the images and their annotations.    
     dict(type='RandomCrop', crop_size=crop_size, cat_max_ratio=0.90),
     dict(type='Resize', scale=(crop_size[0] * resize_ratio, crop_size[1] * resize_ratio), keep_ratio=True),
-    # dict(
-    #     type='Albu',
-    #     transforms=[
-    #         dict(type='OneOf', transforms=[
-    #             dict(type='ColorJitter', brightness=0.1, contrast=0.15, saturation=0.2, hue=0.2, p=0.3),
-    #             dict(type='ElasticTransform', alpha=1, sigma=50, alpha_affine=50, p=0.3),
-    #             dict(type='RandomGamma', gamma_limit=(80, 100), p=0.3),
-    #         ], p=0.3),
-    #     ],
-    # ),
     dict(type='RandomFlip', prob=0.5),
     dict(type='PackSegInputs')
 ]
@@ -211,7 +201,7 @@ test_evaluator = dict(
     type='CityscapesMetric',
     format_only=True,
     keep_results=True,
-    output_dir='_satellite/upernet_convnext-b_ver19_fold0/format_results')
+    output_dir='mask_inference_result/convnext-base_fold0/format_results')
 
 
 

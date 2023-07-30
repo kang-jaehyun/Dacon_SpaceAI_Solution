@@ -3,3 +3,6 @@ original_data/train_img
 datasets/Satellite
 *.pth
 *.tar
+mmsegmentation/_satellite
+mmsegmentation/mask_inference_result
+results/*.csv
