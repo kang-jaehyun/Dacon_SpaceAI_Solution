@@ -15,7 +15,11 @@ Mask2Former: Masked-attention Mask Transformer for Universal Image Segmentation 
   ```
   docker run -it --runtime=nvidia --ipc=host -e NVIDIA_VISIBLE_DEVICES=all -v .:/workspace --name spaceai youkind/d2:latest bash
   ```
-  와 같이 도커를 생성할 수 있고, 그 도커 안에서 아래 코드들을 실행하실 수 있습니다.
+  와 같이 도커를 생성할 수 있고, 그 도커 안에서 아래 코드만 실행해주시면 detectron2 기반 training/inference가 가능합니다.
+  ```
+  cd mask2former/modeling/pixel_decoder/ops
+  sh make.sh
+  ```
 
 
 - 직접 환경 설치하는 방법 (권장하지 않음)
