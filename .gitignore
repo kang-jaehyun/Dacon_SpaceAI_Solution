@@ -1,6 +1,8 @@
 original_data/test_img
 original_data/train_img
+original_data/*.csv
 datasets/Satellite
+*.zip
 *.pth
 *.tar
 mmsegmentation/_satellite
