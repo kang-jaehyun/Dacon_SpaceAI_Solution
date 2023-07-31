@@ -73,7 +73,7 @@ def load_sem_seg_test(image_root, image_ext="jpg"):
     return dataset_dicts
 
 def register_all_dacon(root):
-    root = os.path.join(root, "dacon")
+    root = os.path.join("../datasets", "Satellite")
     meta = _get_dacon_meta()
     for name in ("train", "val", "train_slice", "val_slice", "train_fold", "train_fold_slice", "val_fold", "val_fold_slice"):
         image_dir = os.path.join(root, name+'_img')
