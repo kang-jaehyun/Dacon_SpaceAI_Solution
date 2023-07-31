@@ -73,7 +73,24 @@ OUTPUT_DIR output/fold4
 sh inference.sh
 ``` 
 
+- 직접 트레이닝한 `.pth` 파일로 인퍼런스할 경우, 아래와 같은 방식으로 `inference.py`를 실행시켜주시면 됩니다.
+- 
+```
+python inference.py \
+--config configs/dacon/semantic-segmentation/mfs_f{폴드번호}_base448_dinatl_augver7.yaml \
+--model {모델 파일 경로} \
+--output ../results/dinat_mask2former_fold{폴드번호}
+``` 
 
+- 예를 들어, `output/fold0/model_final.pth`로 인퍼런스를 진행하고 싶은 경우, 아래와 같이 실행하면 됩니다.
+```
+python inference.py \
+--config configs/dacon/semantic-segmentation/mfs_f0_base448_dinatl_augver7.yaml \
+--model output/fold0/model_final.pth \
+--output ../results/dinat_mask2former_fold0
+``` 
+
+- 인퍼런스한 결과는 `../results/dinat_mask2former_fold{폴드번호}.csv` 에서 확인하실 수 있습니다.
 
 ## License
 

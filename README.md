@@ -73,7 +73,27 @@ pip install pyarrow
 detectron2 기반 Mask2former 결과 재현을 위해서는 [Mask2former 학습 및 추론](Mask2former/README.md)을 참고해주세요.
 
 ### mmseg
-mmsegmentation 기반 모델들의 결과 재현을 위해서는 [mmsegmentation 학습 및 추론](mmseg/README.md)을 참고해주세요.
+mmsegmentation 기반 모델들의 결과 재현을 위해서는 [mmsegmentation 학습 및 추론](mmsegmentation/README.md)을 참고해주세요.
 
 ## 최종 앙상블
-TBW
+
+최종 앙상블은 각 폴드에 대해서 5번(fold0 ~ fold4), 그리고 모든 폴드에 대해서 마지막으로 한번 이루어집니다. <br>
+이를 위해서는 `results` 폴더 안에 아래와 같은 파일들이 준비되어야 합니다.
+```
+results
+- ensemble.py
+- convnext-base_fold0.csv
+- ...
+- convnext-base_fold4.csv
+- segformer_fold0.csv
+- ...
+- segformer_fold4.csv
+- resnest_deeplabv3plus_fold0.csv
+- ...
+- resnest_deeplabv3plus_fold4.csv
+- dinat_mask2former_fold0.csv
+- ...
+- dinat_mask2former_fold4.csv
+```
+
+위와 같이 파일이 준비되었다면, `bash ensemble.sh`실행을 통해 앙상블 결과를 얻으실 수 있고, `results/ensemble.csv`에 결과가 저장됩니다.
