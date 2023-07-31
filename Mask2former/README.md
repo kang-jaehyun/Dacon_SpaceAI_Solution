@@ -7,10 +7,32 @@ Mask2Former: Masked-attention Mask Transformer for Universal Image Segmentation 
   - 모든 환경이 설치된 docker 이미지를 docker hub에 올려놨습니다.
   - 이미지 : `youkind/d2:latest`
   - 이미지 pull : `docker pull youkind/d2:latest`
+  - 도커 생성 예시 (gpu 4개)
+  ```
+  docker run -it --gpus='"device=0,1,2,3"' --ipc=host -e NVIDIA_VISIBLE_DEVICES=all -v ./:/workspace --name spaceai youkind/d2:latest bash
+  ```
+  혹은 (CUDA 버전에 따라 다릅니다)
+  ```
+  docker run -it --runtime=nvidia --ipc=host -e NVIDIA_VISIBLE_DEVICES=all -v .:/workspace --name spaceai youkind/d2:latest bash
+  ```
+  와 같이 도커를 생성할 수 있고, 그 도커 안에서 아래 코드들을 실행하실 수 있습니다.
+
 
 - 직접 환경 설치하는 방법 (권장하지 않음)
+  - 사용된 라이브러리 버전은 `libray.txt`에 기록되어 있으나, 다시 한번 말씀드리지만 제가 모든 환경을 세팅해놓은 도커로 실행하시는 것이 안전합니다.
   - mask2former는 detectron2 위에서 동작하기 때문에 detectron2를 설치하셔야 합니다.
-  - 
+  ```
+  # detectron2
+  git clone https://github.com/facebookresearch/detectron2.git
+  cd detectron2
+  pip install -v -e .
+  ```
+  - 이후 mask2former의 `deformableattn`을 컴파일해야 하는데, 아래와 같이 실행해주시면 됩니다.
+  ```
+  cd Dacon_SpaceAI_Solution # 최상위폴더에서 진행
+  cd Mask2former/mask2former/modeling/pixel_decoder/ops
+  sh mask.sh
+  ```
 
 ## Pretrained Weight
 coco instance segmentation pretrained model에서부터 학습을 시작합니다.
