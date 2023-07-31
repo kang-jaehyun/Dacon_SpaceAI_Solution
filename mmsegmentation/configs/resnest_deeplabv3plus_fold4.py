@@ -246,7 +246,7 @@ test_dataloader = dict(
     sampler=dict(type='DefaultSampler', shuffle=False),
     dataset=dict(
         type='SatelliteDataset',
-        data_root = '../datasets/data/Satellite',  # Root path of data.
+        data_root = '../datasets/Satellite',  # Root path of data.
         data_prefix=dict(
             img_path='img_dir/test'),
         pipeline=[
