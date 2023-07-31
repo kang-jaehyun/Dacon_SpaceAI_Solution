@@ -49,11 +49,11 @@ NUM_PROCESS = args.num_process
 TTA = args.tta
 OUTPUT_DIR = '../results'
 OUTPUT_FILENAME = args.model.split('/')[-1].split('.')[0]
-
+OUTPUT = args.output
 if not args.output:
     OUTPUT = os.path.join(OUTPUT_DIR, OUTPUT_FILENAME)
 
-test_data_folder = "../datasets/Satelite/img_dir/test"
+test_data_folder = "../datasets/Satellite/img_dir/test"
 
 print("CONFIG:", CONFIG)
 print("MODEL_WEIGHTS:", MODEL_WEIGHTS)
@@ -119,7 +119,7 @@ if __name__ == '__main__':
     
     # 프로세스 개수
     # submission csv를 동등하게 분할하기 위해 필요한 변수
-    submission = pd.read_csv(csv_file)
+    submission = pd.read_csv(csv_file)[:100]
     num_samples = len(submission)
     chunk_size = num_samples // NUM_PROCESS
 
@@ -147,4 +147,4 @@ if __name__ == '__main__':
     # 결과 저장
     res = pd.DataFrame(dic.items(), columns=['img_id', 'mask_rle'])
     res.sort_values(by=['img_id'], inplace=True)
-    res.to_csv(OUTPUT, index=False)
+    res.to_csv(f'{OUTPUT}.csv', index=False)
