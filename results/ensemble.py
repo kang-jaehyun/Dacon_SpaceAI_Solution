@@ -1,12 +1,12 @@
 import pandas as pd
 import numpy as np
-
+from tqdm import tqdm
 
 convnext_results = [pd.read_csv(f'results/convnext-base_fold{i}.csv') for i in range(5)]
 resnest_results = [pd.read_csv(f'results/resnest_deeplabv3plus_fold{i}.csv') for i in range(5)]
 segformer_results = [pd.read_csv(f'results/segformer_fold{i}.csv') for i in range(5)]
 mask2former_results = [pd.read_csv(f'results/dinat_mask2former_fold{i}.csv') for i in range(5)]
-
+print("Loaded Results")
 foldwise_csvs = [[convnext_results[i], convnext_results[i], resnest_results[i], segformer_results[i], mask2former_results[i]] for i in range(5)]
 
 # RLE 인코딩 함수
@@ -57,14 +57,18 @@ def hard_vote(row):
 
 foldwise_results = []
 for f in range(5):
+    print("Start Fold Ensemble", f)
     merged_df = merge(foldwise_csvs[f])
     merged_df['final_mask_rle'] = merged_df.apply(hard_vote, axis=1)
     merged_df = merged_df[['img_id', 'final_mask_rle']]
     merged_df.rename(columns = {'final_mask_rle':'mask_rle'}, inplace = True)
     foldwise_results.append(merged_df)
+    print("End Fold Ensemble", f)
 
+print("Start Final Ensemble")
 final_merged_df = merge(foldwise_results)
 final_merged_df['final_mask_rle'] = final_merged_df.apply(hard_vote, axis=1)
 final_merged_df = final_merged_df[['img_id', 'final_mask_rle']]
 final_merged_df.rename(columns = {'final_mask_rle':'mask_rle'}, inplace = True)
 final_merged_df.to_csv('results/ensemble.csv', index=False)
+print("End Final Ensemble")
