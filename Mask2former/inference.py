@@ -48,10 +48,10 @@ MODEL_WEIGHTS = args.model
 NUM_PROCESS = args.num_process
 TTA = args.tta
 OUTPUT_DIR = '../results'
-OUTPUT_FILENAME = args.model.split('/')[-1].split('.')[0] + 'csv'
+OUTPUT_FILENAME = args.model.split('/')[-1].split('.')[0]
 
-# TODO 학습이후 곧바로 inference
-OUTPUT = os.path.join(OUTPUT_DIR, OUTPUT_FILENAME)
+if not args.output:
+    OUTPUT = os.path.join(OUTPUT_DIR, OUTPUT_FILENAME)
 
 test_data_folder = "../datasets/Satelite/img_dir/test"
 
