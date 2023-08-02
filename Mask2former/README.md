@@ -15,7 +15,11 @@ Mask2Former: Masked-attention Mask Transformer for Universal Image Segmentation 
   ```
   docker run -it --runtime=nvidia --ipc=host -e NVIDIA_VISIBLE_DEVICES=all -v .:/workspace --name spaceai youkind/d2:latest bash
   ```
-  와 같이 도커를 생성할 수 있고, 그 도커 안에서 아래 코드들을 실행하실 수 있습니다.
+  와 같이 도커를 생성할 수 있고, 그 도커 안에서 아래 코드만 실행해주시면 detectron2 기반 training/inference가 가능합니다.
+  ```
+  cd mask2former/modeling/pixel_decoder/ops
+  sh make.sh
+  ```
 
 
 - 직접 환경 설치하는 방법 (권장하지 않음)
@@ -35,7 +39,8 @@ Mask2Former: Masked-attention Mask Transformer for Universal Image Segmentation 
   ```
 
 ## Pretrained Weight
-coco instance segmentation pretrained model에서부터 학습을 시작합니다.
+coco instance segmentation pretrained model에서부터 학습을 시작하기 위해 model checkpoint를 받아옵니다. <br>
+아래 코드를 실행해주시면 됩니다.
 ```
 mkdir checkpoints
 cd checkpoints
@@ -84,7 +89,7 @@ OUTPUT_DIR output/fold4
 
 ## Model ZOO
 - 직접 트레이닝을 하지 않고 결과를 확인하기 위해서는 학습된 weight를 받아야 합니다.
-- [weight 다운로드는 여기에서 받으실 수 있습니다.](https://yonsei-my.sharepoint.com/personal/youkind_o365_yonsei_ac_kr/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fyoukind%5Fo365%5Fyonsei%5Fac%5Fkr%2FDocuments%2Fspaceai%2Fmodel%5Fweights&view=0)
+- weight 다운로드는 [여기](https://yonsei-my.sharepoint.com/personal/youkind_o365_yonsei_ac_kr/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fyoukind%5Fo365%5Fyonsei%5Fac%5Fkr%2FDocuments%2Fspaceai%2Fmodel%5Fweights&view=0)에서 받으실 수 있습니다.
 - 다운로드가 완료된 `.pth` 파일들은 `Dacon_SpaceAI_Solution/model_weights`안에 넣어주세요.
   
 ## 추론 (Inference)
