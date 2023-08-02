@@ -276,7 +276,7 @@ visualizer = dict(
 log_processor = dict(by_epoch=False)
 log_level = 'INFO'
 load_from = None
-resume = True
+resume = False
 tta_model = dict(type='SegTTAModel')
 optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0005)
 optim_wrapper = dict(
