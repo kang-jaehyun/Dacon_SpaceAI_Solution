@@ -54,7 +54,7 @@ pip install pyarrow
   - `bash data_preprocessing.sh`
   - test data는 제공된 데이터 그대로 datasets에 복사합니다.
   - parquet file은 다음과 같은 column으로 구성되어 있습니다, `['img_id', 'img_path', 'mask_rle', 'fold']`
-  - `EDA/segment_number.ipynb` 을 통해서 5-Fold를 나눈 기준 (number of building segment in 4-way connection) 및 분포를 직접 확인할 수 있습니다.
+  - `EDA/building_segment_number.ipynb` 을 통해서 5-Fold를 나눈 기준 (number of building segment in 4-way connection) 및 분포를 직접 확인할 수 있습니다.
 
 ## 사용 모델 종류
 

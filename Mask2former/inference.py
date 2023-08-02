@@ -119,7 +119,7 @@ if __name__ == '__main__':
     
     # 프로세스 개수
     # submission csv를 동등하게 분할하기 위해 필요한 변수
-    submission = pd.read_csv(csv_file)[:100]
+    submission = pd.read_csv(csv_file)
     num_samples = len(submission)
     chunk_size = num_samples // NUM_PROCESS
 
