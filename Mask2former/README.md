@@ -95,26 +95,31 @@ OUTPUT_DIR output/fold4
 ## 추론 (Inference)
 
 - 모델 `.pth` 파일을 `dinat_mask2former_fold{0~4}.pth`로 저장하셨을 경우, 아래 코드를 통해 5개 fold의 인퍼런스를 진행하실 수 있습니다.
-
 ```
-sh inference.sh
+bash inference.sh {gpu 수}
 ``` 
+- 예를 들어 gpu가 4개일 경우, 아래와 같이 실행하시면 모든 폴드의 인퍼런스를 얻으실 수 있습니다. 
+```
+bash inference.sh 4 
+```
 
 - 직접 트레이닝한 `.pth` 파일로 인퍼런스할 경우, 아래와 같은 방식으로 `inference.py`를 실행시켜주시면 됩니다.
-- 
+
 ```
 python inference.py \
 --config configs/dacon/semantic-segmentation/mfs_f{폴드번호}_base448_dinatl_augver7.yaml \
 --model {모델 파일 경로} \
---output ../results/dinat_mask2former_fold{폴드번호}
+--output ../results/dinat_mask2former_fold{폴드번호} \
+--num_process {gpu 수}
 ``` 
 
-- 예를 들어, `output/fold0/model_final.pth`로 인퍼런스를 진행하고 싶은 경우, 아래와 같이 실행하면 됩니다.
+- 예를 들어, gpu 4개로 `output/fold0/model_final.pth` 모델파일을 이용해 인퍼런스를 진행하고 싶은 경우, 아래와 같이 실행하면 됩니다.
 ```
 python inference.py \
 --config configs/dacon/semantic-segmentation/mfs_f0_base448_dinatl_augver7.yaml \
 --model output/fold0/model_final.pth \
---output ../results/dinat_mask2former_fold0
+--output ../results/dinat_mask2former_fold0 \
+--num_process 4
 ``` 
 
 - 인퍼런스한 결과는 `../results/dinat_mask2former_fold{폴드번호}.csv` 에서 확인하실 수 있습니다.
