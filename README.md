@@ -67,6 +67,11 @@ pip install pyarrow
 
 - 전체 weight 다운로드는 [여기](https://drive.google.com/drive/folders/1paQhzjF7JcsEbCMr1z1bV2rj766M-nhg?usp=drive_link)에서 받으실 수 있습니다.
 - 다운로드가 완료된 `.pth` 파일들은 `Dacon_SpaceAI_Solution/model_weights`안에 넣어주세요.
+- 해당 사용된 pretrained weighted 들은 모두 각각의 configs에 공개된 형태로 COCO Dataset 또는 ADE20k Dataset으로 구성되었으며 학습 및 추론을 시킬시 공개된 링크 주소를 통해 접근 가능합니다.
+- ConvNext: ImageNet21k
+- ResNest : ImageNet21k
+- Segformer : ADE-20k
+- DiNAT-L : COCO
 
 ## 모델 학습 및 추론
 
